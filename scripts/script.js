@@ -24,7 +24,7 @@ function visualize() {
 
     for (i = 0; i < 3; i++) {
         $("#tab-" + i + "-label").html(latest_data[i].pollster);
-
+        $("#polldata" + i).append("<p> Method: " + latest_data[i].method + "</p>");
         for (j = 0; j < 3; j++) {
             $("#polldata" + j).append("<p>" + latest_data[i].questions[j].name + "</p>")
 
