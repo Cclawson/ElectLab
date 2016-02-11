@@ -22,11 +22,17 @@ $(document).ready(function () {
 function visualize() {
     console.log(latest_data);
 
-    $("#polldata").append("<p>" + latest_data[0].pollster + "<br> 1. " + latest_data[0].questions[0].name + "</p>")
+    for (i = 0; i < 3; i++) {
+        $("#tab-" + i + "-label").html(latest_data[i].pollster);
 
+        for (j = 0; j < 3; j++) {
+            $("#polldata" + j).append("<p>" + latest_data[i].questions[j].name + "</p>")
 
-    for (i = 0; i < latest_data[0].questions[0].subpopulations[0].responses.length; i++) {
-        $("#polldata").append("<div class='question' width='100' height='50' style = 'background-color:lightgrey;'>" + latest_data[0].questions[0].subpopulations[0].responses[i].choice + " <br> " + latest_data[0].questions[0].subpopulations[0].responses[i].value + " </div>");
+            for (k = 0; k < latest_data[i].questions[j].subpopulations[0].responses.length; k++) {
+                $("#polldata" + j).append("<div class='question' width='100' height='50' style = 'background-color:lightgrey;'>" + latest_data[i].questions[j].subpopulations[0].responses[k].choice + " <br> " + latest_data[i].questions[j].subpopulations[0].responses[k].value + " </div>");
+            }
+        }
+
     }
 
 }

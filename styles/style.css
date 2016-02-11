@@ -30,6 +30,7 @@ header {
     position: relative;
     min-height: 200px;
     /* This part sucks */
+    
     clear: both;
     margin-top: 200px;
 }
@@ -60,6 +61,8 @@ header {
     bottom: 0;
     padding: 20px;
     border: 1px solid #ccc;
+    height: 500px;
+    overflow: scroll;
 }
 
 [type=radio]:checked ~ label {
@@ -70,4 +73,9 @@ header {
 
 [type=radio]:checked ~ label ~ .content {
     z-index: 1;
+}
+
+.polldata {
+    height: auto;
+    background-color: white;
 }
