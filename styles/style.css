@@ -1,0 +1,73 @@
+* {
+    margin: 0 px;
+    padding: 0 px;
+}
+
+html {
+    background-color: #06294c;
+}
+
+.page_content {
+    height: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+}
+
+header {
+    height: auto;
+    width: 100%;
+}
+
+#banner {
+    -webkit-filter: drop-shadow(5px 5px 5px black);
+    filter: drop-shadow(5px 5px 5px black);
+    height: auto;
+    width: 100%;
+}
+
+.tabs {
+    position: relative;
+    min-height: 200px;
+    /* This part sucks */
+    clear: both;
+    margin-top: 200px;
+}
+
+.tab {
+    float: left;
+}
+
+.tab label {
+    background: #eee;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-left: -1px;
+    position: relative;
+    left: 1px;
+}
+
+.tab [type=radio] {
+    display: none;
+}
+
+.content {
+    position: absolute;
+    top: 28px;
+    left: 0;
+    background: white;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+[type=radio]:checked ~ label {
+    background: white;
+    border-bottom: 1px solid white;
+    z-index: 2;
+}
+
+[type=radio]:checked ~ label ~ .content {
+    z-index: 1;
+}
