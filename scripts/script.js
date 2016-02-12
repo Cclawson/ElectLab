@@ -23,13 +23,17 @@ function visualize() {
     console.log(latest_data);
 
     for (i = 0; i < 3; i++) {
-        $("#tab-" + i + "-label").html(latest_data[i].pollster);
+        console.log(latest_data[i].method);
+        $("#polldata" + i).append("<p> Pollster: " + latest_data[i].pollster + "</p>");
         $("#polldata" + i).append("<p> Method: " + latest_data[i].method + "</p>");
+        $("#polldata" + i).append("<p> Partisan: " + latest_data[i].partisan + "</p>");
+
         for (j = 0; j < 3; j++) {
-            $("#polldata" + j).append("<p>" + latest_data[i].questions[j].name + "</p>")
+            console.log(latest_data[i].questions[j].name);
+            $("#polldata" + i).append("<p>" + latest_data[i].questions[j].name + "</p>")
 
             for (k = 0; k < latest_data[i].questions[j].subpopulations[0].responses.length; k++) {
-                $("#polldata" + j).append("<div class='question' width='100' height='50' style = 'background-color:lightgrey;'>" + latest_data[i].questions[j].subpopulations[0].responses[k].choice + " <br> " + latest_data[i].questions[j].subpopulations[0].responses[k].value + " </div>");
+                $("#polldata" + i).append("<div class='question' width='100' height='50' style = 'background-color:lightgrey;'>" + latest_data[i].questions[j].subpopulations[0].responses[k].choice + " <br> " + latest_data[i].questions[j].subpopulations[0].responses[k].value + " </div>");
             }
         }
 
