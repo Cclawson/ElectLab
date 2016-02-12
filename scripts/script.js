@@ -41,6 +41,19 @@ function visualize() {
 
 }
 
+var voteDisplayReadyInterval = setInterval(function(){
+    if (document.readyState == "complete") {
+        clearInterval(voteDisplayReadyInterval);
+        var canvas01 = new VoteDisplay("canvas-polldata0");
+        canvas01.initialize();
+        var canvas02 = new VoteDisplay("canvas-polldata1");
+        canvas02.initialize();
+        var canvas03 = new VoteDisplay("canvas-polldata2");
+        canvas03.initialize();
+    }
+}, 50);
+}
+
 
 $("#start").on("click", function () {
     openanimation();

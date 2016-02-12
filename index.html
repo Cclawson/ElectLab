@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <script src="scripts/votecanvas/init.js"></script>
     <title>Election Lab</title>
 </head>
 
@@ -32,30 +33,27 @@
                     <input type="radio" id="tab-1" name="tab-group-1" checked>
                     <label for="tab-1" id="tab-0-label">Poll One</label>
 
-                    <div class="content">
-                        <div id="polldata0" class="polldata"></div>
-                        <canvas></canvas>
-                    </div>
+                <div class="content">
+                    <div id="polldata0" class="polldata"></div>
+                    <div id="canvas-polldata0"></div>
                 </div>
 
                 <div class="tab">
                     <input type="radio" id="tab-2" name="tab-group-1">
                     <label for="tab-2" id="tab-1-label">Poll Two</label>
 
-                    <div class="content">
-                        <div id="polldata1" class="polldata"></div>
-                        <canvas></canvas>
-                    </div>
+                <div class="content">
+                    <div id="polldata1" class="polldata"></div>
+                    <div id="canvas-polldata1"></div>
                 </div>
 
                 <div class="tab">
                     <input type="radio" id="tab-3" name="tab-group-1">
                     <label for="tab-3" id="tab-2-label">Poll Three</label>
 
-                    <div class="content">
-                        <div id="polldata2" class="polldata"></div>
-                        <canvas></canvas>
-                    </div>
+                <div class="content">
+                    <div id="polldata2" class="polldata"></div>
+                    <div id="canvas-polldata2"></div>
                 </div>
 
             </div>
