@@ -41,7 +41,7 @@ function visualize() {
 
 }
 
-var voteDisplayReadyInterval = setInterval(function(){
+var voteDisplayReadyInterval = setInterval(function () {
     if (document.readyState == "complete") {
         clearInterval(voteDisplayReadyInterval);
         var canvas01 = new VoteDisplay("canvas-polldata0");
@@ -52,7 +52,7 @@ var voteDisplayReadyInterval = setInterval(function(){
         canvas03.initialize();
     }
 }, 50);
-}
+
 
 
 $("#start").on("click", function () {
