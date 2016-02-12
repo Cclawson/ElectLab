@@ -119,9 +119,21 @@ header {
 }
 
 .page_content {
-    background-color: red;
-    height: auto;
-    width: 1400px;
+    background-color: #c7171a;
+    border-radius: 15px;
+    -webkit-filter: drop-shadow(5px 5px 5px black);
+    filter: drop-shadow(5px 5px 5px black);
+    height: 800px;
+    margin-top: 10px;
+    padding-top: 5px;
+    width: 900px;
+}
+
+.poll_box {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    width: 750px;
 }
 
 .tabs {
@@ -130,7 +142,6 @@ header {
     /* This part sucks */
     
     clear: both;
-    margin-top: 200px;
 }
 
 .tab {
@@ -161,7 +172,7 @@ header {
     bottom: 0;
     padding: 20px;
     border: 1px solid #ccc;
-    height: 500px;
+    height: 600px;
     overflow: scroll;
 }
 
