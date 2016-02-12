@@ -7,11 +7,18 @@ html {
     background-color: #06294c;
 }
 
-h1 {
+
+/*h1 {
     color: white;
     font-size: 60px;
     text-align: center;
     margin-top: -5px;
+}*/
+
+#ribbon {
+    margin-left: 35%;
+    -webkit-filter: drop-shadow(5px 5px 5px black);
+    filter: drop-shadow(5px 5px 5px black);
 }
 
 #start {
@@ -140,7 +147,6 @@ header {
     position: relative;
     min-height: 200px;
     /* This part sucks */
-    
     clear: both;
 }
 
