@@ -40,3 +40,21 @@ function visualize() {
     }
 
 }
+
+
+$("#start").on("click", function () {
+    openanimation();
+    $("#start").css({
+        'visibility': "hidden",
+        'display': "none",
+    }).fadeOut("slow");
+})
+
+
+function openanimation() {
+    document.getElementById("leftside").style.width = "0px";
+    document.getElementById("rightside").style.left = "100%";
+    document.getElementById("rightside").style.width = "0px";
+
+
+}
