@@ -54,12 +54,12 @@ h1 {
 }
 
 #leftside {
+    background-color: brown;
     position: absolute;
     top: 0;
     left: 0;
     width: 50%;
-    height: 100%;
-    background-color: burlywood;
+    height: 2000px;
     -webkit-transition: 2000ms linear;
     -moz-transition: 2000ms linear;
     -o-transition: 2000ms linear;
@@ -71,25 +71,30 @@ h1 {
 
 .Centerer {
     display: inline-block;
-    height: 100%;
-    vertical-align: middle;
+    height: vertical-align: middle;
+}
+
+#rimg {
+    margin: 0;
+    position: relative;
+    top: 405px;
 }
 
 #limg {
     margin: 0;
     position: relative;
-    top: 40%;
+    top: 507px;
     transform: translate(0, -50%);
     float: right;
 }
 
 #rightside {
+    background-color: brown;
     position: absolute;
     top: 0;
     left: 50%;
     width: 50%;
-    height: 100%;
-    background-color: burlywood;
+    height: 2000px;
     -webkit-transition: 2000ms linear;
     -moz-transition: 2000ms linear;
     -o-transition: 2000ms linear;
