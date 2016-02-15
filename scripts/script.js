@@ -66,8 +66,24 @@ $("#start").on("click", function () {
 
 function openanimation() {
     document.getElementById("leftside").style.width = "0px";
+    document.getElementById("leftside").style.height = "0px";
+    document.getElementById("leftside").style.borderRadius = "1000px";
+
     document.getElementById("rightside").style.left = "100%";
     document.getElementById("rightside").style.width = "0px";
+    document.getElementById("rightside").style.height = "0px";
+    document.getElementById("rightside").style.borderRadius = "1000px";
 
+    document.getElementById("rightside").style.webkitTransform = 'rotate(' + 45 + 'deg)';
+    document.getElementById("rightside").style.mozTransform = 'rotate(' + 45 + 'deg)';
+    document.getElementById("rightside").style.msTransform = 'rotate(' + 45 + 'deg)';
+    document.getElementById("rightside").style.oTransform = 'rotate(' + 45 + 'deg)';
+    document.getElementById("rightside").style.transform = 'rotate(' + 45 + 'deg)';
+
+    document.getElementById("leftside").style.webkitTransform = 'rotate(-' + 45 + 'deg)';
+    document.getElementById("leftside").style.mozTransform = 'rotate(-' + 45 + 'deg)';
+    document.getElementById("leftside").style.msTransform = 'rotate(-' + 45 + 'deg)';
+    document.getElementById("leftside").style.oTransform = 'rotate(-' + 45 + 'deg)';
+    document.getElementById("leftside").style.transform = 'rotate(-' + 45 + 'deg)';
 
 }

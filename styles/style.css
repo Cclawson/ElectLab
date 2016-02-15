@@ -6,8 +6,6 @@
 html {
     background-color: #06294c;
 }
-
-
 /*h1 {
     color: white;
     font-size: 60px;
@@ -84,7 +82,7 @@ html {
 #rimg {
     margin: 0;
     position: relative;
-    top: 405px;
+    top: 360px;
 }
 
 #limg {
@@ -107,6 +105,7 @@ html {
     -o-transition: 2000ms linear;
     -ms-transition: 2000ms linear;
     transition: 2000ms linear;
+    overflow: hidden;
     z-index: 100;
 }
 
@@ -139,6 +138,7 @@ header {
     margin-top: 10px;
     padding-top: 5px;
     width: 900px;
+    margin-bottom: 10px;
 }
 
 .poll_box {
@@ -152,6 +152,7 @@ header {
     position: relative;
     min-height: 200px;
     /* This part sucks */
+    
     clear: both;
 }
 
