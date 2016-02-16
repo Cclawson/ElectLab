@@ -2,9 +2,17 @@
  * Created by Maravis on 2/11/2016.
  */
 
-const vd_html_images = "<div style=\'display: none\'>\n    <img class=\'vd-images\' id=\'vd-bencarson\' src=\'/scripts/votecanvas/politicalicons/bencarson.png\'>\n    <img class=\'vd-images\' id=\'vd-berniesanders\' src=\'/scripts/votecanvas/politicalicons/berniesanders.png\'>\n    <img class=\'vd-images\' id=\'vd-carlyfiorina\' src=\'/scripts/votecanvas/politicalicons/carlyfiorina.png\'>\n    <img class=\'vd-images\' id=\'vd-chrischristie\' src=\'/scripts/votecanvas/politicalicons/chrischristie.png\'>\n    <img class=\'vd-images\' id=\'vd-donaldtrump\' src=\'/scripts/votecanvas/politicalicons/donaldtrump.png\'>\n    <img class=\'vd-images\' id=\'vd-hillaryclinton\' src=\'/scripts/votecanvas/politicalicons/hillaryclinton.png\'>\n    <img class=\'vd-images\' id=\'vd-jebbush\' src=\'/scripts/votecanvas/politicalicons/jebbush.png\'>\n    <img class=\'vd-images\' id=\'vd-jimgilmore\' src=\'/scripts/votecanvas/politicalicons/jimgilmore.png\'>\n    <img class=\'vd-images\' id=\'vd-johnkasich\' src=\'/scripts/votecanvas/politicalicons/johnkasich.png\'>\n    <img class=\'vd-images\' id=\'vd-marcorubio\' src=\'/scripts/votecanvas/politicalicons/marcorubio.png\'>\n    <img class=\'vd-images\' id=\"vd-martino\'malley\" src=\"/scripts/votecanvas/politicalicons/martino\'malley.png\">\n    <img class=\'vd-images\' id=\'vd-mikehuckabee\' src=\'/scripts/votecanvas/politicalicons/mikehuckabee.png\'>\n    <img class=\'vd-images\' id=\'vd-randpaul\' src=\'/scripts/votecanvas/politicalicons/randpaul.png\'>\n    <img class=\'vd-images\' id=\'vd-rand paul\' src=\'/scripts/votecanvas/politicalicons/randpaul.png\'>\n    <img class=\'vd-images\' id=\'vd-ricksantorum\' src=\'/scripts/votecanvas/politicalicons/ricksantorum.png\'>\n    <img class=\'vd-images\' id=\'vd-tedcruz\' src=\'/scripts/votecanvas/politicalicons/tedcruz.png\'>\n</div>";
+const vd_html_images = "<div style=\'display: none\'>\n    <img class=\'vd-images\' id=\'vd-bencarson\' src=\'scripts/votecanvas/politicalicons/bencarson.png\'>\n    <img class=\'vd-images\' id=\'vd-berniesanders\' src=\'scripts/votecanvas/politicalicons/berniesanders.png\'>\n    <img class=\'vd-images\' id=\'vd-carlyfiorina\' src=\'scripts/votecanvas/politicalicons/carlyfiorina.png\'>\n    <img class=\'vd-images\' id=\'vd-chrischristie\' src=\'scripts/votecanvas/politicalicons/chrischristie.png\'>\n    <img class=\'vd-images\' id=\'vd-donaldtrump\' src=\'scripts/votecanvas/politicalicons/donaldtrump.png\'>\n    <img class=\'vd-images\' id=\'vd-hillaryclinton\' src=\'scripts/votecanvas/politicalicons/hillaryclinton.png\'>\n    <img class=\'vd-images\' id=\'vd-jebbush\' src=\'scripts/votecanvas/politicalicons/jebbush.png\'>\n    <img class=\'vd-images\' id=\'vd-jimgilmore\' src=\'scripts/votecanvas/politicalicons/jimgilmore.png\'>\n    <img class=\'vd-images\' id=\'vd-johnkasich\' src=\'scripts/votecanvas/politicalicons/johnkasich.png\'>\n    <img class=\'vd-images\' id=\'vd-marcorubio\' src=\'scripts/votecanvas/politicalicons/marcorubio.png\'>\n    <img class=\'vd-images\' id=\"vd-martino\'malley\" src=\"scripts/votecanvas/politicalicons/martino\'malley.png\">\n    <img class=\'vd-images\' id=\'vd-mikehuckabee\' src=\'scripts/votecanvas/politicalicons/mikehuckabee.png\'>\n    <img class=\'vd-images\' id=\'vd-randpaul\' src=\'scripts/votecanvas/politicalicons/randpaul.png\'>\n    <img class=\'vd-images\' id=\'vd-rand paul\' src=\'scripts/votecanvas/politicalicons/randpaul.png\'>\n    <img class=\'vd-images\' id=\'vd-ricksantorum\' src=\'scripts/votecanvas/politicalicons/ricksantorum.png\'>\n    <img class=\'vd-images\' id=\'vd-tedcruz\' src=\'scripts/votecanvas/politicalicons/tedcruz.png\'>\n</div>";
 var vd_html_body = null;
 var vd_html_pasted = false;
+var vd_html_loaded = false;
+
+var voteDisplayReadyInterval = setInterval(function () {
+    if (document.readyState == "complete") {
+        clearInterval(voteDisplayReadyInterval);
+        vd_html_loaded = true;
+    }
+}, 50);
 
 function VoteDisplay(id) {
     if (!vd_html_pasted) {
@@ -103,7 +111,7 @@ function VoteDisplay(id) {
             ctx.font = "14px Verdana";
             ctx.fillStyle = "#000000";
             ctx.textAlign = "center";
-            if (image) {
+            if (image && image.complete) {
                 ctx.drawImage(image,x,y + (-drawHeight) - 60);
                 ctx.fillText(Math.round(drawValue).toString(), x + width / 2, y + (-drawHeight) - 70);
             } else  {
@@ -285,15 +293,17 @@ function VoteDisplay(id) {
         }
     };
     this.draw = function() {
-        ctx.clearRect(0, 0, that.getWidth(), that.getHeight());
-        for (var i = 0; i < transArray.length; i++) {
-            transArray[i].draw();
-        }
-        for (var i = 0; i < titleArray.length; i++) {
-            titleArray[i].draw();
-        }
-        if (drawLegend) {
-            drawLegend.draw(10, 60, 200, that.getHeight() - 70);
+        if (vd_html_loaded) {
+            ctx.clearRect(0, 0, that.getWidth(), that.getHeight());
+            for (var i = 0; i < transArray.length; i++) {
+                transArray[i].draw();
+            }
+            for (var i = 0; i < titleArray.length; i++) {
+                titleArray[i].draw();
+            }
+            if (drawLegend) {
+                drawLegend.draw(10, 60, 200, that.getHeight() - 70);
+            }
         }
     };
     this.setText = function(text){
