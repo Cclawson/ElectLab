@@ -37,9 +37,9 @@ function visualize() {
             var choiceArray = [];
             console.log(latest_data[i].questions[j].name);
             var questionName = latest_data[i].questions[j].name;
-            $("#polldata" + i).append("<p>" + latest_data[i].questions[j].name + "</p>");
+//            $("#polldata" + i).append("<p>" + latest_data[i].questions[j].name + "</p>");
             for (k = 0; k < latest_data[i].questions[j].subpopulations[0].responses.length; k++) {
-                $("#polldata" + i).append("<div class='question' width='100' height='50' style = 'background-color:lightgrey;'>" + latest_data[i].questions[j].subpopulations[0].responses[k].choice + " <br> " + latest_data[i].questions[j].subpopulations[0].responses[k].value + " </div>");
+                //                $("#polldata" + i).append("<div class='question' width='100' height='50' style = 'background-color:lightgrey;'>" + latest_data[i].questions[j].subpopulations[0].responses[k].choice + " <br> " + latest_data[i].questions[j].subpopulations[0].responses[k].value + " </div>");
                 choiceArray.push([latest_data[i].questions[j].subpopulations[0].responses[k].choice, Number(latest_data[i].questions[j].subpopulations[0].responses[k].value)]);
             }
             $("#polldata" + i).append("<div class='canvasVote' id='" + canvasID + "'></div>");
@@ -49,8 +49,8 @@ function visualize() {
             for (var s = 0; s < choiceArray.length; s++) {
                 canvas.addLegendItem(choiceArray[s][0], chartColors[s], choiceArray[s][1]);
             }
-            canvas.setWidth(250 + ( 60 * choiceArray.length));
-            canvas.setHeight(80 + ( 30 * choiceArray.length));
+            canvas.setWidth(250 + (60 * choiceArray.length));
+            canvas.setHeight(80 + (30 * choiceArray.length));
         }
 
     }
@@ -84,23 +84,23 @@ $("#start").on("click", function () {
 function openanimation() {
     document.getElementById("leftside").style.width = "0px";
     document.getElementById("leftside").style.height = "0px";
-    document.getElementById("leftside").style.borderRadius = "1000px";
 
     document.getElementById("rightside").style.left = "100%";
     document.getElementById("rightside").style.width = "0px";
     document.getElementById("rightside").style.height = "0px";
-    document.getElementById("rightside").style.borderRadius = "1000px";
 
-    document.getElementById("rightside").style.webkitTransform = 'rotate(' + 45 + 'deg)';
-    document.getElementById("rightside").style.mozTransform = 'rotate(' + 45 + 'deg)';
-    document.getElementById("rightside").style.msTransform = 'rotate(' + 45 + 'deg)';
-    document.getElementById("rightside").style.oTransform = 'rotate(' + 45 + 'deg)';
-    document.getElementById("rightside").style.transform = 'rotate(' + 45 + 'deg)';
+    //    document.getElementById("rightside").style.webkitTransform = 'rotate(' + 90 + 'deg)';
+    //    document.getElementById("rightside").style.mozTransform = 'rotate(' + 90 + 'deg)';
+    //    document.getElementById("rightside").style.msTransform = 'rotate(' + 90 + 'deg)';
+    //    document.getElementById("rightside").style.oTransform = 'rotate(' + 90 + 'deg)';
+    //    document.getElementById("rightside").style.transform = 'rotate(' + 90 + 'deg)';
+    //
+    //    document.getElementById("leftside").style.webkitTransform = 'rotate(-' + 90 + 'deg)';
+    //    document.getElementById("leftside").style.mozTransform = 'rotate(-' + 90 + 'deg)';
+    //    document.getElementById("leftside").style.msTransform = 'rotate(-' + 90 + 'deg)';
+    //    document.getElementById("leftside").style.oTransform = 'rotate(-' + 90 + 'deg)';
+    //    document.getElementById("leftside").style.transform = 'rotate(-' + 90 + 'deg)';
 
-    document.getElementById("leftside").style.webkitTransform = 'rotate(-' + 45 + 'deg)';
-    document.getElementById("leftside").style.mozTransform = 'rotate(-' + 45 + 'deg)';
-    document.getElementById("leftside").style.msTransform = 'rotate(-' + 45 + 'deg)';
-    document.getElementById("leftside").style.oTransform = 'rotate(-' + 45 + 'deg)';
-    document.getElementById("leftside").style.transform = 'rotate(-' + 45 + 'deg)';
+    window.scrollTo(0, document.body.scrollHeight);
 
 }
