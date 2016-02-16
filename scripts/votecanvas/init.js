@@ -2,7 +2,20 @@
  * Created by Maravis on 2/11/2016.
  */
 
+const vd_html_images = "<div style=\'display: none\'>\n    <img class=\'vd-images\' id=\'vd-bencarson\' src=\'/scripts/votecanvas/politicalicons/bencarson.png\'>\n    <img class=\'vd-images\' id=\'vd-berniesanders\' src=\'/scripts/votecanvas/politicalicons/berniesanders.png\'>\n    <img class=\'vd-images\' id=\'vd-carlyfiorina\' src=\'/scripts/votecanvas/politicalicons/carlyfiorina.png\'>\n    <img class=\'vd-images\' id=\'vd-chrischristie\' src=\'/scripts/votecanvas/politicalicons/chrischristie.png\'>\n    <img class=\'vd-images\' id=\'vd-donaldtrump\' src=\'/scripts/votecanvas/politicalicons/donaldtrump.png\'>\n    <img class=\'vd-images\' id=\'vd-hillaryclinton\' src=\'/scripts/votecanvas/politicalicons/hillaryclinton.png\'>\n    <img class=\'vd-images\' id=\'vd-jebbush\' src=\'/scripts/votecanvas/politicalicons/jebbush.png\'>\n    <img class=\'vd-images\' id=\'vd-jimgilmore\' src=\'/scripts/votecanvas/politicalicons/jimgilmore.png\'>\n    <img class=\'vd-images\' id=\'vd-johnkasich\' src=\'/scripts/votecanvas/politicalicons/johnkasich.png\'>\n    <img class=\'vd-images\' id=\'vd-marcorubio\' src=\'/scripts/votecanvas/politicalicons/marcorubio.png\'>\n    <img class=\'vd-images\' id=\"vd-martino\'malley\" src=\"/scripts/votecanvas/politicalicons/martino\'malley.png\">\n    <img class=\'vd-images\' id=\'vd-mikehuckabee\' src=\'/scripts/votecanvas/politicalicons/mikehuckabee.png\'>\n    <img class=\'vd-images\' id=\'vd-randpaul\' src=\'/scripts/votecanvas/politicalicons/randpaul.png\'>\n    <img class=\'vd-images\' id=\'vd-rand paul\' src=\'/scripts/votecanvas/politicalicons/randpaul.png\'>\n    <img class=\'vd-images\' id=\'vd-ricksantorum\' src=\'/scripts/votecanvas/politicalicons/ricksantorum.png\'>\n    <img class=\'vd-images\' id=\'vd-tedcruz\' src=\'/scripts/votecanvas/politicalicons/tedcruz.png\'>\n</div>";
+var vd_html_body = null;
+var vd_html_pasted = false;
+
 function VoteDisplay(id) {
+    if (!vd_html_pasted) {
+        vd_html_pasted = true;
+        if ($) {
+            $('body').append(vd_html_images);
+        } else {
+            vd_html_body = document.getElementsByTagName("body")[0];
+            vd_html_body.innerHTML += vd_html_images;
+        }
+    }
     const that = this;
     const fps = 30;
     const initialWidth = 700;
@@ -10,6 +23,7 @@ function VoteDisplay(id) {
     const divHTML = "<canvas></canvas>";
     const transArray = [];
     const titleArray = [];
+    var images = {};
     var time = 0;
     var selectorDiv = null;
     var selectorCanvas = null;
@@ -20,6 +34,10 @@ function VoteDisplay(id) {
     var legend = null;
     this.id = id;
     this.initialize = function() {
+        var imageHTMLArray = document.getElementsByClassName('vd-images');
+        for (i in imageHTMLArray) {
+            images[imageHTMLArray[i].id] = imageHTMLArray[i];
+        }
         selectorDiv = document.getElementById(id);
         selectorDiv.innerHTML = "";
         selectorDiv.innerHTML += divHTML;
@@ -78,14 +96,19 @@ function VoteDisplay(id) {
             drawValue = (that.lerp([drawValue], [value], 0.005)[0]);
             drawHeight = that.lerp([drawHeight], [targetHeight], 0.005)[0];
         };
-        this.draw = function(x, y, width, height, color){
+        this.draw = function(x, y, width, height, color, image){
             targetHeight = height;
             ctx.fillStyle = color;
             ctx.fillRect(x, y, width, -drawHeight);
             ctx.font = "14px Verdana";
             ctx.fillStyle = "#000000";
             ctx.textAlign = "center";
-            ctx.fillText(Math.round(drawValue).toString(), x + width/2, y + (-drawHeight) - 10);
+            if (image) {
+                ctx.drawImage(image,x,y + (-drawHeight) - 60);
+                ctx.fillText(Math.round(drawValue).toString(), x + width / 2, y + (-drawHeight) - 70);
+            } else  {
+                ctx.fillText(Math.round(drawValue).toString(), x + width / 2, y + (-drawHeight) - 10);
+            }
         };
     };
     this.LegendItem = function(newText, newColor, newValue){
@@ -93,6 +116,7 @@ function VoteDisplay(id) {
         var color = "black";
         var text = "None";
         var value = 0;
+        var image = null;
         this.getColor = function(){
             return color;
         };
@@ -101,6 +125,9 @@ function VoteDisplay(id) {
         };
         this.getValue = function(){
             return value;
+        };
+        this.getImage = function(){
+            return image;
         };
         this.update = function(){};
         this.draw = function(x, y){
@@ -116,6 +143,13 @@ function VoteDisplay(id) {
         if (newText) { text = newText; }
         if (newColor) { color = newColor; }
         if (newValue) { value = newValue; }
+        var lowerStringText = text.toLowerCase();
+        for (var i in images) {
+            if (i.indexOf(lowerStringText) > -1) {
+                image = images[i];
+                break;
+            }
+        }
     };
     this.Legend = function() {
         const self = this;
@@ -156,7 +190,7 @@ function VoteDisplay(id) {
             for (i in items) {
                 counter++;
                 items[i].draw(drawX + 10, y + 10 + (30 * (counter-1)));
-                bars[i].draw((drawX + width) + 30 + (60 * (counter-1)), that.getHeight() - 10, 50, ((height - 10) * items[i].getValue())/sumValue, items[i].getColor());
+                bars[i].draw((drawX + width) + 30 + (60 * (counter-1)), that.getHeight() - 10, 50, ((height - 10) * items[i].getValue())/sumValue, items[i].getColor(), items[i].getImage());
             }
             ctx.globalAlpha = 1;
         };

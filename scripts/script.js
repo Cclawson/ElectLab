@@ -78,7 +78,7 @@ $("#start").on("click", function () {
         'visibility': "hidden",
         'display': "none",
     }).fadeOut("slow");
-})
+});
 
 
 function openanimation() {

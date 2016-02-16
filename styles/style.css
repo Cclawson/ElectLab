@@ -33,7 +33,6 @@ html {
     margin-left: auto;
     margin-right: auto;
     background-color: white;
-    z-index: 100;
     text-align: center;
     border: 10px solid black;
     -moz-box-shadow: inset 0 0 10px #000000;
@@ -78,7 +77,8 @@ html {
 
 .Centerer {
     display: inline-block;
-    height: vertical-align: middle;
+    /*height: */
+    vertical-align: middle;
 }
 
 #rimg {
