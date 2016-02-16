@@ -19,7 +19,7 @@ $(document).ready(function () {
     });
 });
 
-var chartColors = ["#74FF52", "#FF5252", "#FFC252", "#52FFC2", "#5260FF", "#E552FF", "#F9FF52", "#5CBF49", "#BF8049", "#BF49AF", "#BF4949", "#FF8400", "#FF00D9"];
+var chartColors = ["#74FF52", "#FF5252", "#FFC252", "#8C5AA6", "#5260FF", "#E552FF", "#F9FF52", "#5CBF49", "#BF8049", "#BF49AF", "#BF4949", "#FF8400", "#FF00D9"];
 
 function visualize() {
     console.log(latest_data);
