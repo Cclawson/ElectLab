@@ -19,39 +19,56 @@ $(document).ready(function () {
     });
 });
 
+const chartColors = ["#74FF52", "#FF5252", "#FFC252", "#52FFC2", "#5260FF", "#E552FF", "#F9FF52", "#5CBF49", "#BF8049", "#BF49AF", "#BF4949", "#FF8400", "#FF00D9"];
+
 function visualize() {
     console.log(latest_data);
+    var counter = 0;
 
-    for (i = 0; i < 3; i++) {
+    for (var i = 0; i < 3; i++) {
         console.log(latest_data[i].method);
         $("#polldata" + i).append("<p> Pollster: " + latest_data[i].pollster + "</p>");
         $("#polldata" + i).append("<p> Method: " + latest_data[i].method + "</p>");
         $("#polldata" + i).append("<p> Partisan: " + latest_data[i].partisan + "</p>");
 
-        for (j = 0; j < 3; j++) {
+        for (var j = 0; j < 3; j++) {
+            counter++;
+            const canvasID = "canvas-polldata" + counter;
+            const choiceArray = [];
             console.log(latest_data[i].questions[j].name);
-            $("#polldata" + i).append("<p>" + latest_data[i].questions[j].name + "</p>")
-
+            const questionName = latest_data[i].questions[j].name;
+            $("#polldata" + i).append("<p>" + latest_data[i].questions[j].name + "</p>");
             for (k = 0; k < latest_data[i].questions[j].subpopulations[0].responses.length; k++) {
                 $("#polldata" + i).append("<div class='question' width='100' height='50' style = 'background-color:lightgrey;'>" + latest_data[i].questions[j].subpopulations[0].responses[k].choice + " <br> " + latest_data[i].questions[j].subpopulations[0].responses[k].value + " </div>");
+                choiceArray.push([latest_data[i].questions[j].subpopulations[0].responses[k].choice, Number(latest_data[i].questions[j].subpopulations[0].responses[k].value)]);
             }
+            $("#polldata" + i).append("<div class='canvasVote' id='" + canvasID + "'></div>");
+            var canvas = new VoteDisplay(canvasID);
+            canvas.initialize();
+            canvas.setText(questionName);
+            for (var s = 0; s < choiceArray.length; s++) {
+                canvas.addLegendItem(choiceArray[s][0], chartColors[s], choiceArray[s][1]);
+            }
+            canvas.setWidth(250 + ( 60 * choiceArray.length));
+            canvas.setHeight(80 + ( 30 * choiceArray.length));
         }
 
     }
 
 }
 
-var voteDisplayReadyInterval = setInterval(function () {
-    if (document.readyState == "complete") {
-        clearInterval(voteDisplayReadyInterval);
-        var canvas01 = new VoteDisplay("canvas-polldata0");
-        canvas01.initialize();
-        var canvas02 = new VoteDisplay("canvas-polldata1");
-        canvas02.initialize();
-        var canvas03 = new VoteDisplay("canvas-polldata2");
-        canvas03.initialize();
-    }
-}, 50);
+//var voteDisplayReadyInterval = setInterval(function () {
+//    if (document.readyState == "complete") {
+//        clearInterval(voteDisplayReadyInterval);
+//        var canvas01 = new VoteDisplay("canvas-polldata0");
+//        canvas01.initialize();
+//        canvas01.setText("Test Title");
+//        var canvas02 = new VoteDisplay("canvas-polldata1");
+//        canvas02.initialize();
+//        var canvas03 = new VoteDisplay("canvas-polldata2");
+//        canvas03.initialize();
+//    }
+//}, 50);
 
 
 
