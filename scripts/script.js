@@ -19,7 +19,7 @@ $(document).ready(function () {
     });
 });
 
-const chartColors = ["#74FF52", "#FF5252", "#FFC252", "#52FFC2", "#5260FF", "#E552FF", "#F9FF52", "#5CBF49", "#BF8049", "#BF49AF", "#BF4949", "#FF8400", "#FF00D9"];
+var chartColors = ["#74FF52", "#FF5252", "#FFC252", "#52FFC2", "#5260FF", "#E552FF", "#F9FF52", "#5CBF49", "#BF8049", "#BF49AF", "#BF4949", "#FF8400", "#FF00D9"];
 
 function visualize() {
     console.log(latest_data);
@@ -33,10 +33,10 @@ function visualize() {
 
         for (var j = 0; j < 3; j++) {
             counter++;
-            const canvasID = "canvas-polldata" + counter;
-            const choiceArray = [];
+            var canvasID = "canvas-polldata" + counter;
+            var choiceArray = [];
             console.log(latest_data[i].questions[j].name);
-            const questionName = latest_data[i].questions[j].name;
+            var questionName = latest_data[i].questions[j].name;
             $("#polldata" + i).append("<p>" + latest_data[i].questions[j].name + "</p>");
             for (k = 0; k < latest_data[i].questions[j].subpopulations[0].responses.length; k++) {
                 $("#polldata" + i).append("<div class='question' width='100' height='50' style = 'background-color:lightgrey;'>" + latest_data[i].questions[j].subpopulations[0].responses[k].choice + " <br> " + latest_data[i].questions[j].subpopulations[0].responses[k].value + " </div>");
