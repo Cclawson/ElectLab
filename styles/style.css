@@ -9,8 +9,6 @@ html {
     overflow-x: hidden;
     overflow-y: auto;
 }
-
-
 /*h1 {
     color: white;
     font-size: 60px;
@@ -67,7 +65,7 @@ html {
     top: 0;
     left: 0;
     width: 50%;
-    height: calc(100% + 300px);
+    height: calc(100% + 400px);
     -webkit-transition: 2000ms linear;
     -moz-transition: 2000ms linear;
     -o-transition: 2000ms linear;
@@ -80,6 +78,7 @@ html {
 .Centerer {
     display: inline-block;
     /*height: */
+    
     vertical-align: middle;
 }
 
@@ -103,7 +102,7 @@ html {
     top: 0;
     left: 50%;
     width: 50%;
-    height: calc(100% + 300px);
+    height: calc(100% + 400px);
     -webkit-transition: 2000ms linear;
     -moz-transition: 2000ms linear;
     -o-transition: 2000ms linear;
@@ -179,6 +178,7 @@ header {
     position: relative;
     min-height: 200px;
     /* This part sucks */
+    
     clear: both;
 }
 
