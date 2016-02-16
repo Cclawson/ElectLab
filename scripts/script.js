@@ -37,7 +37,7 @@ function visualize() {
             var choiceArray = [];
             console.log(latest_data[i].questions[j].name);
             var questionName = latest_data[i].questions[j].name;
-//            $("#polldata" + i).append("<p>" + latest_data[i].questions[j].name + "</p>");
+            //            $("#polldata" + i).append("<p>" + latest_data[i].questions[j].name + "</p>");
             for (k = 0; k < latest_data[i].questions[j].subpopulations[0].responses.length; k++) {
                 //                $("#polldata" + i).append("<div class='question' width='100' height='50' style = 'background-color:lightgrey;'>" + latest_data[i].questions[j].subpopulations[0].responses[k].choice + " <br> " + latest_data[i].questions[j].subpopulations[0].responses[k].value + " </div>");
                 choiceArray.push([latest_data[i].questions[j].subpopulations[0].responses[k].choice, Number(latest_data[i].questions[j].subpopulations[0].responses[k].value)]);
@@ -101,6 +101,5 @@ function openanimation() {
     //    document.getElementById("leftside").style.oTransform = 'rotate(-' + 90 + 'deg)';
     //    document.getElementById("leftside").style.transform = 'rotate(-' + 90 + 'deg)';
 
-    window.scrollTo(0, document.body.scrollHeight);
 
 }
